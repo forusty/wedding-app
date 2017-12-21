@@ -4,6 +4,7 @@
 - AngularJS 1.5
 - Bootstrap Beta V4
 - MomentJS
+- Firebase for hosting (FREE!)
 
 ## Intro and Reason behind the project
 
