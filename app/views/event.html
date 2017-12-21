@@ -1,0 +1,59 @@
+<div style="text-align: center;background-color: white" class="sticky-top">
+	<h1>Reich and Chen Yen Wedding!</h1>
+	<select ng-model="selectedName" ng-change="change()">
+		<option ng-repeat="x in names" value="{{x}}">{{x}}</option>
+	</select>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Contact List</button>
+</div>
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" >
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Role</th>
+						<th scope="col">Number</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="contact in contacts">
+						<td>{{contact. name}}</td>
+						<td>{{contact.title}}</td>
+						<td><a href="tel:{{contact.number}}">{{contact.number}}</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-1 col-md-3"></div>
+		<div class="col-xs-12 col-sm-10 col-md-6">
+			<!-- {{data}} -->
+			<h1>Your Role : {{data.title}}</h1>
+			<div class="card text-center" ng-class="getBorder($index)" id="event{{$index}}" ng-repeat="event in data.Events" style="margin-bottom:50px">
+				<a ng-if="event.image.length > 0" target="_blank" class="btn btn-primary" href="{{event.image}}">
+					Click for surprise
+				</a>
+				
+				<div class="card-header text-white" ng-class="getClass($index)">
+					<h4>{{ convertDate(event.datetime) | date:'HH:mm a'}}<br/>({{ calculateNext($index) }})</h4>
+				</div>
+				<ul class="list-group list-group-flush" ng-repeat="items in event.details">
+					<li class="list-group-item">{{items}}</li>
+				</ul>
+				<span class="text-white bg-danger" ng-if="event.items.length>0"><h4>Things to bring</h4></span>
+				<div class="form-check" ng-repeat="bring in event.items">
+					<label class="form-check-label">
+						<input class="form-check-input" type="checkbox" value="{{bring}}">
+						{{bring}}
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1 col-md-3"></div>
+	</div>
+</div>
